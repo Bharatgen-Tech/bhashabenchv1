@@ -336,71 +336,74 @@ The final dataset contains <b>74,166 questions across four major domains</b> (Ag
         <div class="content has-text-justified">
           <p>
             <!--<img src="static/images/bg.png" style="width:5.0em;vertical-align: middle" alt="Logo"/>-->
-            <span class="bhashabench">In this paper,</span>we introduce BhashaBench V1, providing a comprehensive evaluation of LLMs on
-India-centric knowledge systems and exploring model capabilities across critical Indian domains.
-However, there are several limitations to acknowledge. (1) Language Coverage Limitations: Al-
-though BhashaBench V1 supports English and Hindi, covering a significant portion of India’s pop-
-ulation, India has 22 official languages and hundreds of regional dialects. Our current evaluation
-cannot capture the full linguistic diversity of Indian knowledge systems, particularly regional varia-
-tions in agricultural practices, legal terminologies, and traditional medicine nomenclature that exist
-in languages like Tamil, Telugu, Bengali, and others. Future iterations will expand to include addi-
-tional Indian languages to enhance coverage. (2) Domain Scope Limitations: While we cover four
-fundamental domains (Agriculture, Legal, Finance, and Ayurveda) representing core areas of Indian
-society, our assessment cannot encompass the entire breadth of India-specific knowledge systems.
-Areas such as traditional crafts, regional governance systems, indigenous engineering practices, and
-other vernacular knowledge traditions remain unexplored for future expansion. Our content spans
-from grassroots practical knowledge to professional examination standards, ensuring broad appli-
-cability across different expertise levels. (3) Evaluation Methodology Limitations: Our evaluation
-primarily uses structured question formats derived from authentic government and professional ex-
-aminations. While this ensures real-world relevance and practical applicability, it may not fully
-capture all forms of contextual reasoning required in complex domain applications.
-The main biases in BhashaBench V1 can be categorized into three aspects: (1) Source Material
-Bias: Despite comprehensive curation from diverse authentic sources spanning grassroots to pro-
-fessional levels, certain regional practices and emerging contemporary developments may be un-
-derrepresented. (2) Language Resource Bias: The benchmark reflects the inherent resource dis-
-parity between English and Hindi, where Hindi content, while substantial, represents a relatively
-lower-resource context compared to English. (3) Examination Framework Bias: Our reliance on
-established examination systems, while ensuring authenticity, may introduce institutional perspec-
-tives present in the original assessment frameworks. However, our extensive coverage across 90+
-subdomains and 500+ topics from diverse sources mitigates this bias significantly. The impact of
-these limitations on LLM evaluation includes clear performance distinctions between models across
-domains and languages, as evidenced by the substantial score variations from 34.28% to 76.49%,
-demonstrating BhashaBench V1’s effectiveness in distinguishing LLM capabilities while presenting
-meaningful challenges even for top-performing models in India-specific contexts.
+            <span class="bhashabench">BhashaBench V1 has several limitations. (1) Language Coverage: The benchmark currently covers
+English and Hindi, and therefore does not capture
+India’s full linguistic diversity, including regional
+variation in agricultural practices, legal terminology, and traditional medicine. Future versions will
+expand to additional Indian languages. (2) Domain
+Scope: While the benchmark covers Agriculture,
+Legal, Finance, and Ayurveda, other India-specific
+knowledge areas, including traditional crafts, regional governance, and indigenous practices, remain outside its current scope. (3) Evaluation
+Methodology: The benchmark uses structured
+questions derived from authentic government and
+professional examinations, which may not capture
+all forms of contextual reasoning required in realworld applications. Moreover, open-source and
+API-based models are evaluated using different
+scoring protocols (log-likelihood and generative
+prompting, respectively); cross-protocol comparisons should therefore be interpreted with caution.
+(4) Validation: Linguistic review was conducted
+by the in-house linguistics team without credentialed domain experts, independent double annotation, or inter-annotator agreement (IAA). Thus, the
+benchmark does not provide independent domainlevel verification of technical or factual content.
+Future versions should incorporate domain experts
+and overlapping annotation. (5) Prompt Language: Evaluation instructions and prompts were
+provided in English for both English and Hindi
+questions, which introduces a potential confound
+in the Hindi results. However, our localized prompt
+sensitivity analysis indicates that this has a negligible effect on overall performance. (6) Data
+Processing and Evaluation Overlap: GPT-OSS120B was used for several data construction and
+classification steps and is also evaluated on the resulting benchmark, creating a potential circularity.
+However, a paired ablation on the reconstructed
+subset showed that GPT-OSS-120B had the smallest reconstruction-driven gain among the three evaluated models, providing evidence against a strong
+self-favoring reconstruction effect.
+The benchmark also exhibits three broader
+sources of bias. Source Material Bias: Despite
+drawing from diverse authentic sources, some regional practices and emerging developments may
+be underrepresented. Language Resource Bias:
+The English and Hindi subsets differ in resource
+availability and composition; in Agriculture (BBK),
+for example, the Hindi subset is more concentrated
+in fewer subdomains and contains relatively easier
+questions, so the English–Hindi gap should not be
+attributed to language ability alone. Examination
+Framework Bias: Reliance on established examination systems may introduce institutional perspectives present in the original assessments. These
+limitations should be considered when interpreting
+BhashaBench V1 results.
             </p>
-          <h3 class="title is-3" style="text-align: left;">TOWARDS BROADER IMPACT</h3>
-          <p><b>Societal Impact.</b> BhashaBench V1 is anticipated to play a transformative role in bridging the digi-
-tal divide for India-centric knowledge systems. LLMs trained and evaluated with BhashaBench V1
-can significantly enhance accessibility to critical domain expertise across agriculture, legal services,
-finance, and traditional medicine, particularly benefiting underserved rural and semi-urban popula-
-tions. In agriculture, improved LLM capabilities can democratize access to expert crop advisory,
-pest management, and sustainable farming practices, potentially impacting the livelihoods of over
-40 million farmers dependent on agricultural activities. In the legal domain, enhanced models can
-assist with legal document comprehension, procedural guidance, and basic legal literacy, address-
-ing the substantial access-to-justice challenges faced by millions in India’s complex legal system.
-For healthcare, particularly Ayurveda, better model performance can support practitioners and pa-
-tients in understanding traditional treatment protocols and medicinal formulations, preserving and
-disseminating indigenous medical knowledge. In finance, improved model capabilities can enhance
-financial literacy and support the growing digital payment ecosystem processing billions of trans-
-actions annually. However, we acknowledge potential risks including over-reliance on automated
-systems for critical decisions, potential displacement of traditional knowledge practitioners, and the
-risk of perpetuating biases present in examination-based evaluation systems. The benchmark’s fo-
-cus on professional examination standards, while ensuring quality, may inadvertently favor formal
-educational backgrounds over experiential knowledge.
+          <h3 class="title is-3" style="text-align: left;">Ethical Considerations</h3>
+          <p><b>Societal Impact.</b> BhashaBench V1 is intended to
+support the evaluation and development of LLMs
+for India-centric knowledge systems across agriculture, legal services, finance, and Ayurveda. Improved performance on such domains could support applications such as agricultural information
+access, legal information assistance, financial literacy, and access to traditional medicine knowledge. However, these applications also present
+risks. Models evaluated on BhashaBench V1 may
+produce incorrect or misleading information, and
+over-reliance on automated systems could be harmful in high-stakes settings. Examination-based evaluation may also favor formal educational knowledge over experiential or locally specific knowledge. We therefore recommend appropriate human
+oversight when models are applied to critical domains and caution against treating benchmark performance as a substitute for professional expertise.
 <br/><br/>
-<b>Ethics Statement.</b> We ensure strict adherence to applicable laws and ethical guidelines throughout
-our data collection, curation, and usage processes. All question-answer pairs are sourced exclusively
-from publicly available government and professional examination papers, respecting intellectual property rights and ensuring no unauthorized reproduction of copyrighted materials. Our curation
-process involved diverse teams to minimize cultural and regional biases, though we acknowledge the
-inherent limitations of our current English and Hindi coverage. The dataset contains no personally
-identifiable information, offensive content, or culturally insensitive material. All content has been
-thoroughly verified for authenticity and accuracy through multiple validation rounds involving do-
-main experts. BhashaBench V1 is intended solely for academic research and educational purposes
-to advance inclusive AI development for Indian contexts. Any commercial use, misuse for harmful
-applications, or deployment without appropriate safeguards is strictly prohibited. We strongly urge
-all users to employ this resource responsibly, ensuring that any models developed or evaluated using
-BhashaBench V1 are deployed with appropriate human oversight, particularly in critical domains
-affecting public welfare, and with transparent disclosure of model limitations to end users.</p>
+<b>Ethics Statement.</b> BhashaBench V1 is constructed from publicly available government and
+professional examination materials. We follow the
+applicable terms and conditions governing the use
+of these sources and do not intentionally include
+personally identifiable information. The questionanswer pairs were reviewed against their original
+source materials for extraction fidelity, answer-key
+accuracy, and linguistic quality by our in-house linguistics team. This review did not involve domaincredentialed experts or independent double annotation, as discussed in the Limitations. We also
+acknowledge that the current English and Hindi
+coverage does not capture the full linguistic and
+cultural diversity of India. BhashaBench V1 is
+released to support academic research and educational use. Users should exercise appropriate
+caution when applying models evaluated with the
+benchmark, particularly in high-stakes domains,
+and should maintain human oversight and clearly communicate model limitations in downstream applications.
+</p>
 
           
         </div>
